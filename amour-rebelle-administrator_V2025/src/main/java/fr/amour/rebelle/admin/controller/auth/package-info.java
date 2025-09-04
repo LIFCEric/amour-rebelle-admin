@@ -1,0 +1,1 @@
+package fr.amour.rebelle.admin.controller.auth;
