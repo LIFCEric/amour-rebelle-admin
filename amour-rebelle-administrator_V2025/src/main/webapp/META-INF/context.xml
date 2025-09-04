@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<!--
+	This context could be auto deployed
+	naming convention : context.xml 
+	 -->
+<Context>
+
+	<!-- ChatGPT-4 -->
+	<Realm className="org.apache.catalina.realm.LockOutRealm">
+	    <Realm className="org.apache.catalina.realm.DataSourceRealm"
+		       dataSourceName="JDBC/FRENCHY"
+		       localDataSource="true"
+		       userTable="app_client" userNameCol="email" userCredCol="password"
+		       userRoleTable="app_tomcat_permission" roleNameCol="trole">
+		  <CredentialHandler className="org.apache.catalina.realm.MessageDigestCredentialHandler"
+		                     algorithm="SHA-256"/>
+		</Realm>
+	</Realm>
+
+	<Resource name="JDBC/FRENCHY" auth="Container"
+              type="javax.sql.DataSource" driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://be232224-001.dbaas.ovh.net:35254/FRENCHY"
+              username="futurs-contrats" password="Pit309918" maxTotal="20" maxIdle="10"
+              maxWaitMillis="-1"/>
+	
+
+	<Resource name="mail/support" auth="Container" type="jakarta.mail.Session"
+		mail.smtp.host="ssl0.ovh.net"
+		mail.smtp.port="465"
+		mail.smtp.auth = "true"
+		mail.smtp.ssl.enable = "true"
+		mail.smtp.auth.mechanisms = "LOGIN PLAIN"
+		mail.smtp.user="support@amour-rebelle.fr"
+		username="support@amour-rebelle.fr"
+		password="Pit309918" />
+	
+</Context>
